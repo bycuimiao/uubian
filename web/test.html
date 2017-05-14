@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+            var user={};
+            user.username='admin';
+            user.password='123456';
+            $.ajax({
+                "contentType": "application/json; charset=utf-8",
+                "type": "POST",
+                "data":JSON.stringify(user),
+                "url": "http://localhost:8080/UUbian/UserBaseInfo/checkUserBaseInfo",
+                "success": function (data) {
+                    console.log(data);
+                    if(data=='200'){
+
+                    }else{
+
+                    }
+                },
+                error: function () {
+
+                }
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
