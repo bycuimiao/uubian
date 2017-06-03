@@ -13,7 +13,7 @@ public class CorsConfig {
             .allowedOrigins("*")
             .allowedMethods("GET", "POST", "HEAD", "PUT", "DELETE","OPTIONS")
             .allowedHeaders("Accept", "Origin", "X-Requested-With", "Content-Type", "Last-Modified")
-            .exposedHeaders("Set-Cookie")
+            .exposedHeaders("Set-Cookie") 
             .allowCredentials(false).maxAge(3600);
         System.out.println("hello>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }*/
