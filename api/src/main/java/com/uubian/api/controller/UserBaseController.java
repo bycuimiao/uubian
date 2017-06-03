@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uubian.api.domain.Message;
 import com.uubian.api.domain.UserBase;
 import com.uubian.api.repository.UseBaseRepository;
+import com.uubian.api.tool.BCrypt;
 
 
 @RestController()
@@ -37,16 +38,17 @@ public class UserBaseController {
 	}
 	@PostMapping("/save")
 	public Message save(@RequestBody UserBase userBase){
+		userBase.setPassword(BCrypt.hashpw(userBase.getPassword(), BCrypt.gensalt()));
 		int num = useBaseRepository.save(userBase);
 		if(num==1){
 			return Message.init(200);
 		}else{
 			return Message.init(202);
 		}
-		
 	}
 	@PostMapping("/update")
 	public Message update(@PathVariable UserBase userBase){
+		userBase.setPassword(BCrypt.hashpw(userBase.getPassword(), BCrypt.gensalt()));
 		int num = useBaseRepository.update(userBase);
 		if(num==1){
 			return Message.init(200);
