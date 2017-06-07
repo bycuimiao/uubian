@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uubian.api.annotation.Privilege;
+import com.uubian.api.common.BCrypt;
 import com.uubian.api.domain.dto.Message;
 import com.uubian.api.domain.postgres.UserBase;
 import com.uubian.api.factory.TokenFactory;
 import com.uubian.api.repository.jdbc.UseBaseRepository;
 import com.uubian.api.repository.redis.TockenRepository;
-import com.uubian.api.tool.BCrypt;
 
 
 @RestController()
