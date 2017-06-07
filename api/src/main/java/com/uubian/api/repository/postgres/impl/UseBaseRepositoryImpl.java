@@ -1,4 +1,4 @@
-package com.uubian.api.repository.jdbc.impl;
+package com.uubian.api.repository.postgres.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.uubian.api.domain.postgres.UserBase;
-import com.uubian.api.repository.jdbc.UseBaseRepository;
+import com.uubian.api.repository.postgres.UseBaseRepository;
 @Repository
 public class UseBaseRepositoryImpl implements UseBaseRepository{
 	

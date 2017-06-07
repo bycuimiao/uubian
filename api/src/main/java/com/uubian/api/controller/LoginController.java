@@ -12,7 +12,7 @@ import com.uubian.api.common.BCrypt;
 import com.uubian.api.domain.dto.Message;
 import com.uubian.api.domain.postgres.UserBase;
 import com.uubian.api.factory.TokenFactory;
-import com.uubian.api.repository.jdbc.UseBaseRepository;
+import com.uubian.api.repository.postgres.UseBaseRepository;
 import com.uubian.api.repository.redis.TockenRepository;
 
 

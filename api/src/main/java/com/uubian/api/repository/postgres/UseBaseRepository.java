@@ -1,4 +1,4 @@
-package com.uubian.api.repository.jdbc;
+package com.uubian.api.repository.postgres;
 
 
 import java.util.List;
