@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uubian.api.domain.People;
-import com.uubian.api.repository.PeopleRepository;
+import com.uubian.api.domain.mongodb.People;
+import com.uubian.api.repository.mongodb.PeopleRepository;
 
 
 @RestController()

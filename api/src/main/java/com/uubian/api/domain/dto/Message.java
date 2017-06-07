@@ -1,4 +1,4 @@
-package com.uubian.api.domain;
+package com.uubian.api.domain.dto;
 
 public class Message {
 	private int code;

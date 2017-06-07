@@ -1,4 +1,4 @@
-package com.uubian.api.tool;
+package com.uubian.api.factory;
 
 import java.util.UUID;
 

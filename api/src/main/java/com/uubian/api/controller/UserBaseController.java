@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uubian.api.domain.Message;
-import com.uubian.api.domain.UserBase;
-import com.uubian.api.repository.UseBaseRepository;
+import com.uubian.api.domain.dto.Message;
+import com.uubian.api.domain.postgres.UserBase;
+import com.uubian.api.repository.jdbc.UseBaseRepository;
 import com.uubian.api.tool.BCrypt;
 
 

@@ -1,10 +1,9 @@
-package com.uubian.api.repository;
+package com.uubian.api.repository.jdbc;
 
 
 import java.util.List;
 
-
-import com.uubian.api.domain.UserBase;
+import com.uubian.api.domain.postgres.UserBase;
 public interface UseBaseRepository{
 
 	

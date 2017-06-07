@@ -1,4 +1,4 @@
-package com.uubian.api.domain;
+package com.uubian.api.domain.postgres;
 
 public class UserBase {
 	public String username;

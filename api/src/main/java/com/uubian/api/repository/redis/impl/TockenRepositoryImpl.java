@@ -1,4 +1,4 @@
-package com.uubian.api.repository.impl;
+package com.uubian.api.repository.redis.impl;
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,7 +7,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Repository;
 
-import com.uubian.api.repository.TockenRepository;
+import com.uubian.api.repository.redis.TockenRepository;
 @Repository
 public class TockenRepositoryImpl implements TockenRepository{
 	@Autowired

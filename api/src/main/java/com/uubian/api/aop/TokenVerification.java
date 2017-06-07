@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.uubian.api.repository.TockenRepository;
+import com.uubian.api.repository.redis.TockenRepository;
 @Aspect
 @Component
 public class TokenVerification {

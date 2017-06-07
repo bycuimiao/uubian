@@ -1,4 +1,4 @@
-package com.uubian.api.repository;
+package com.uubian.api.repository.redis;
 
 public interface TockenRepository {
 	public int setTocken(String key,String value);

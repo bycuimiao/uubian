@@ -1,4 +1,4 @@
-package com.uubian.api.domain;
+package com.uubian.api.domain.mongodb;
 
 import org.springframework.data.annotation.Id;
 
