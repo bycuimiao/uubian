@@ -2,11 +2,11 @@ package com.uubian.api.domain.dto;
 
 public class Message {
 	private int code;
-	private String msgText;
+	private String text;
 	
 	public Message(){
 		code=0;
-		msgText="";
+		text="";
 	}
 	
 
@@ -20,26 +20,26 @@ public class Message {
 	}
 
 
-	public String getMsgText() {
-		return msgText;
+	public String getText() {
+		return text;
 	}
-	public void setMsgText(String msgText) {
-		this.msgText = msgText;
+	public void setText(String text) {
+		this.text = text;
 	}
-	public static Message init(int code,String msgText){
-		Message msg = new Message();
-		msg.setMsgText(msgText);
-		msg.setCode(code);
-		return msg;
+	public static Message init(int code,String text){
+		Message message = new Message();
+		message.setText(text);
+		message.setCode(code);
+		return message;
 	}
 	public static Message init(int code){
 		Message msg = new Message();
 		msg.setCode(code);
 		return msg;
 	}
-	public static Message init(String msgText){
-		Message msg = new Message();
-		msg.setMsgText(msgText);
-		return msg;
+	public static Message init(String text){
+		Message message = new Message();
+		message.setText(text);
+		return message;
 	}
 }

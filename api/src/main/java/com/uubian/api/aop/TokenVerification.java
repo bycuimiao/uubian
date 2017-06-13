@@ -1,5 +1,8 @@
 package com.uubian.api.aop;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.uubian.api.domain.dto.Message;
 import com.uubian.api.repository.redis.TockenRepository;
 @Aspect
 @Component
@@ -29,10 +33,12 @@ public class TokenVerification {
     	HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();    
     	Cookie cookies[]=request.getCookies();
     	String token="";
+    	Map<String,Object> map = new HashMap<String, Object>();
+    	map.put("msg", Message.init(202,"No_Session"));
     	if(cookies!=null){
         	for(int i=0;i<cookies.length;i++){
         		Cookie cookie=cookies[i];
-        		if(cookie.getName().equals("token")){
+        		if(cookie.getName().equals("access_token")){
         			token=cookie.getValue();
         			break;
         		}
@@ -45,13 +51,13 @@ public class TokenVerification {
     				tockenRepository.setTocken(token, tokenValue);
     				return pjp.proceed();
     			} catch (Throwable e) {
-    				return null;
+    				return map;
     			} 
     		}else{
-    			return null;
+    			return map;
     		}
     	}else{
-    		return null;
+    		return map;
     	}
     	
     }  

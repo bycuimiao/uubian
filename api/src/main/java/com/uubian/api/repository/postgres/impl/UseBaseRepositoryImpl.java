@@ -1,6 +1,7 @@
 package com.uubian.api.repository.postgres.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,10 @@ public class UseBaseRepositoryImpl implements UseBaseRepository{
         		sql+=" AND nickname = :nickname";
         		parameters.addValue("nickname", userBase.getNickname());
         	}
+        	if(userBase.getMail()!=null){
+        		sql+=" AND mail = :mail";
+        		parameters.addValue("mail", userBase.getMail());
+        	}
         }
         List<Map<String,Object>> list = namedParameterJdbcTemplate.queryForList(sql,parameters);
         Iterator<Map<String,Object>> iterator = list.iterator();
@@ -46,6 +51,8 @@ public class UseBaseRepositoryImpl implements UseBaseRepository{
             user.setUsername((String)map4dept.get("username"));
             user.setPassword((String)map4dept.get("password"));
             user.setNickname((String)map4dept.get("nickname"));
+            user.setMail((String)map4dept.get("mail"));
+            user.setRegistertime((Date)map4dept.get("registertime"));
             users.add(user);
         }
 		return users;
@@ -77,24 +84,34 @@ public class UseBaseRepositoryImpl implements UseBaseRepository{
         }
         return sum;
 	}
-	public int delete(int id){
+	public int delete(long id){
 		String sql = "DELETE FROM user_base where id=?";
 		return jdbcTemplate.update(sql, id);
 	}
 	
 	public int save(UserBase userBase){
-		String sql = "INSERT INTO user_base (username,password,nickname) VALUES (?,?,?)";
-		return jdbcTemplate.update(sql, userBase.getUsername(),userBase.getPassword(),userBase.getNickname());
+		String sql = "INSERT INTO user_base (username,password,nickname,mail,registertime) VALUES (?,?,?,?,?)";
+		return jdbcTemplate.update(sql, userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getRegistertime());
 	}
 
 	public int update(UserBase userBase) {
-		String sql = "UPDATE user_base SET username=?, password=?,nickname=? WHERE id=?";
-		return jdbcTemplate.update(sql,userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getId());
+		String sql = "UPDATE user_base SET username=?, password=?,nickname=?,mail=? WHERE id=?";
+		return jdbcTemplate.update(sql,userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getId());
 	}
 	
 	public UserBase getUserBaseByUsername(String username){
 		String sql = "SELECT * FROM user_base WHERE username=?";
 		RowMapper<UserBase> rowMapper=new BeanPropertyRowMapper<UserBase>(UserBase.class);
 		return jdbcTemplate.queryForObject(sql, rowMapper,username);
+	}
+	public UserBase getUserBaseByMail(String mail){
+		String sql = "SELECT * FROM user_base WHERE mail=?";
+		RowMapper<UserBase> rowMapper=new BeanPropertyRowMapper<UserBase>(UserBase.class);
+		return jdbcTemplate.queryForObject(sql, rowMapper,mail);
+	}
+	public UserBase getUserBaseById(long id){
+		String sql = "SELECT * FROM user_base WHERE id=?";
+		RowMapper<UserBase> rowMapper=new BeanPropertyRowMapper<UserBase>(UserBase.class);
+		return jdbcTemplate.queryForObject(sql, rowMapper,id);
 	}
 }

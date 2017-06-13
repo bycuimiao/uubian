@@ -1,6 +1,9 @@
 package com.uubian.api.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +14,7 @@ import com.uubian.api.annotation.Privilege;
 import com.uubian.api.common.BCrypt;
 import com.uubian.api.domain.dto.Message;
 import com.uubian.api.domain.postgres.UserBase;
+import com.uubian.api.domain.redis.Token;
 import com.uubian.api.factory.TokenFactory;
 import com.uubian.api.repository.postgres.UseBaseRepository;
 import com.uubian.api.repository.redis.TockenRepository;
@@ -27,16 +31,21 @@ public class LoginController {
     
     @Privilege
 	@GetMapping("/login/{username}/{password}")
-	public Message save(@PathVariable String username,@PathVariable String password){
+	public Map<String,Object> login(@PathVariable String username,@PathVariable String password){
 		UserBase userBase = useBaseRepository.getUserBaseByUsername(username);
+		Map<String,Object> map = new HashMap<String, Object>();
 		if(userBase!=null&&BCrypt.checkpw(password, userBase.getPassword())){
-			String tocken = TokenFactory.productionToken();
-			tockenRepository.setTocken(tocken, userBase.getId()+"");
-			return Message.init(200,tocken);
+			String access_token = TokenFactory.productionToken();
+			Token token = new Token();
+			token.setAccess_token(access_token);
+			token.setUserBase(userBase);
+			tockenRepository.setTocken(access_token, userBase.getId()+"");
+			map.put("msg", Message.init(200));
+			map.put("token", token);
 		}else{
-			return Message.init(202);
+			map.put("msg", Message.init(200));
 		}
-		
+		return map;
 		
 	}
 	@GetMapping("/logout")
