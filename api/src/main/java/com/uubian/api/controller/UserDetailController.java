@@ -24,7 +24,6 @@ public class UserDetailController {
 	private UseDetailRepository useDetailRepository;
 
 
-	@Privilege
 	@GetMapping("/getOneById/{id}")
 	public Map<String,Object> getOneById(@PathVariable long id){
 		UserDetail useDetail = useDetailRepository.getUserDetailById(id);
@@ -37,7 +36,6 @@ public class UserDetailController {
 		}
 		return map;
 	}
-	@Privilege
 	@PostMapping("/save")
 	public Map<String,Object> save(@RequestBody UserDetail useDetail){
 
@@ -50,7 +48,6 @@ public class UserDetailController {
 		}
 		return map;
 	}
-	@Privilege
 	@PostMapping("/update")
 	public Map<String,Object> update(@PathVariable UserDetail useDetail){
 		int num = useDetailRepository.update(useDetail);

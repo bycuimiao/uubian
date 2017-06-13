@@ -36,7 +36,6 @@ public class UserBaseController {
 		}
 		return map;
 	}
-	@Privilege
 	@GetMapping("/deleteById/{id}")
 	public Map<String,Object> getAll(@PathVariable long id){
 		int num = useBaseRepository.delete(id);
@@ -48,7 +47,6 @@ public class UserBaseController {
 		}
 		return map;
 	}
-	@Privilege
 	@GetMapping("/getOneById/{id}")
 	public Map<String,Object> getOneById(@PathVariable long id){
 		UserBase userBase = useBaseRepository.getUserBaseById(id);
@@ -61,7 +59,6 @@ public class UserBaseController {
 		}
 		return map;
 	}
-	@Privilege
 	@PostMapping("/save")
 	public Map<String,Object> save(@RequestBody UserBase userBase){
 		userBase.setPassword(BCrypt.hashpw(userBase.getPassword(), BCrypt.gensalt()));
