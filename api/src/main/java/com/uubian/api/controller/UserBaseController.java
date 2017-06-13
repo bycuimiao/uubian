@@ -61,16 +61,28 @@ public class UserBaseController {
 		}
 		return map;
 	}
+	@Privilege
 	@PostMapping("/save")
 	public Map<String,Object> save(@RequestBody UserBase userBase){
 		userBase.setPassword(BCrypt.hashpw(userBase.getPassword(), BCrypt.gensalt()));
-		int num = useBaseRepository.save(userBase);
 		Map<String,Object> map = new HashMap<String, Object>();
-		if(num==1){
-			map.put("msg", Message.init(200));
-		}else{
-			map.put("msg", Message.init(202));
+		UserBase temp1 = useBaseRepository.getUserBaseByUsername(userBase.getUsername());
+		UserBase temp2 = useBaseRepository.getUserBaseByMail(userBase.getMail());
+		if(temp1==null&&temp2==null){
+			int num = useBaseRepository.save(userBase);
+			if(num==1){
+				map.put("msg", Message.init(200));
+				UserBase finalUserBase = useBaseRepository.getUserBaseByUsername(userBase.getUsername());
+				map.put("userBase", finalUserBase);
+			}else{
+				map.put("msg", Message.init(202));
+			}
+		}else if(temp1!=null){
+			map.put("msg", Message.init(202,"用户名已被注册"));
+		}else if(temp2!=null){
+			map.put("msg", Message.init(202,"邮箱已被注册"));
 		}
+		
 		return map;
 	}
 	@PostMapping("/update")

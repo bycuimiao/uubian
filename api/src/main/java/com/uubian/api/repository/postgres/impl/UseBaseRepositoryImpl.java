@@ -91,27 +91,49 @@ public class UseBaseRepositoryImpl implements UseBaseRepository{
 	
 	public int save(UserBase userBase){
 		String sql = "INSERT INTO user_base (username,password,nickname,mail,registertime) VALUES (?,?,?,?,?)";
-		return jdbcTemplate.update(sql, userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getRegistertime());
+		try {
+			return jdbcTemplate.update(sql, userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getRegistertime());
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	public int update(UserBase userBase) {
 		String sql = "UPDATE user_base SET username=?, password=?,nickname=?,mail=? WHERE id=?";
-		return jdbcTemplate.update(sql,userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getId());
+		try {
+			return jdbcTemplate.update(sql,userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getId());
+	
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 	
 	public UserBase getUserBaseByUsername(String username){
 		String sql = "SELECT * FROM user_base WHERE username=?";
 		RowMapper<UserBase> rowMapper=new BeanPropertyRowMapper<UserBase>(UserBase.class);
-		return jdbcTemplate.queryForObject(sql, rowMapper,username);
+		try {
+			return jdbcTemplate.queryForObject(sql, rowMapper,username);
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 	public UserBase getUserBaseByMail(String mail){
 		String sql = "SELECT * FROM user_base WHERE mail=?";
 		RowMapper<UserBase> rowMapper=new BeanPropertyRowMapper<UserBase>(UserBase.class);
-		return jdbcTemplate.queryForObject(sql, rowMapper,mail);
+		try {	
+			return jdbcTemplate.queryForObject(sql, rowMapper,mail);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	public UserBase getUserBaseById(long id){
 		String sql = "SELECT * FROM user_base WHERE id=?";
 		RowMapper<UserBase> rowMapper=new BeanPropertyRowMapper<UserBase>(UserBase.class);
-		return jdbcTemplate.queryForObject(sql, rowMapper,id);
+		try {
+			return jdbcTemplate.queryForObject(sql, rowMapper,id);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }
