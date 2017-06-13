@@ -43,7 +43,7 @@ public class LoginController {
 			map.put("msg", Message.init(200));
 			map.put("token", token);
 		}else{
-			map.put("msg", Message.init(200));
+			map.put("msg", Message.init(202,"用户名或者密码错误"));
 		}
 		return map;
 		

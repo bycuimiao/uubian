@@ -34,7 +34,7 @@ public class TokenVerification {
     	Cookie cookies[]=request.getCookies();
     	String token="";
     	Map<String,Object> map = new HashMap<String, Object>();
-    	map.put("msg", Message.init(202,"No_Session"));
+    	map.put("msg", Message.init(202,"未登录"));
     	if(cookies!=null){
         	for(int i=0;i<cookies.length;i++){
         		Cookie cookie=cookies[i];
