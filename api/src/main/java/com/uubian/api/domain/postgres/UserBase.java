@@ -9,7 +9,7 @@ public class UserBase {
 	private String nickname;
 	private String mail;
 	private Date registertime;
-	
+	private String phone;
 	
 	public UserBase() {
 		super();
@@ -74,6 +74,16 @@ public class UserBase {
 
 	public void setRegistertime(Date registertime) {
 		this.registertime = registertime;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 

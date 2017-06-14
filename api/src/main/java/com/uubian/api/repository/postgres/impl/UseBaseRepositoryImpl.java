@@ -40,6 +40,10 @@ public class UseBaseRepositoryImpl implements UseBaseRepository{
         		sql+=" AND mail = :mail";
         		parameters.addValue("mail", userBase.getMail());
         	}
+        	if(userBase.getPhone()!=null){
+        		sql+=" AND phone = :phone";
+        		parameters.addValue("phone", userBase.getPhone());
+        	}
         }
         List<Map<String,Object>> list = namedParameterJdbcTemplate.queryForList(sql,parameters);
         Iterator<Map<String,Object>> iterator = list.iterator();
@@ -53,6 +57,7 @@ public class UseBaseRepositoryImpl implements UseBaseRepository{
             user.setNickname((String)map4dept.get("nickname"));
             user.setMail((String)map4dept.get("mail"));
             user.setRegistertime((Date)map4dept.get("registertime"));
+            user.setPhone((String)map4dept.get("phone"));
             users.add(user);
         }
 		return users;
@@ -90,18 +95,18 @@ public class UseBaseRepositoryImpl implements UseBaseRepository{
 	}
 	
 	public int save(UserBase userBase){
-		String sql = "INSERT INTO user_base (username,password,nickname,mail,registertime) VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO user_base (username,password,nickname,mail,phone,registertime) VALUES (?,?,?,?,?)";
 		try {
-			return jdbcTemplate.update(sql, userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getRegistertime());
+			return jdbcTemplate.update(sql, userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getPhone(),userBase.getRegistertime());
 		} catch (Exception e) {
 			return 0;
 		}
 	}
 
 	public int update(UserBase userBase) {
-		String sql = "UPDATE user_base SET username=?, password=?,nickname=?,mail=? WHERE id=?";
+		String sql = "UPDATE user_base SET username=?, password=?,nickname=?,mail=?,phone=? WHERE id=?";
 		try {
-			return jdbcTemplate.update(sql,userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getId());
+			return jdbcTemplate.update(sql,userBase.getUsername(),userBase.getPassword(),userBase.getNickname(),userBase.getMail(),userBase.getPhone(),userBase.getId());
 	
 		} catch (Exception e) {
 			return 0;
@@ -116,13 +121,21 @@ public class UseBaseRepositoryImpl implements UseBaseRepository{
 		} catch (Exception e) {
 			return null;
 		}
-		
 	}
 	public UserBase getUserBaseByMail(String mail){
 		String sql = "SELECT * FROM user_base WHERE mail=?";
 		RowMapper<UserBase> rowMapper=new BeanPropertyRowMapper<UserBase>(UserBase.class);
 		try {	
 			return jdbcTemplate.queryForObject(sql, rowMapper,mail);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	public UserBase getUserBaseByPhone(String phone){
+		String sql = "SELECT * FROM user_base WHERE phone=?";
+		RowMapper<UserBase> rowMapper=new BeanPropertyRowMapper<UserBase>(UserBase.class);
+		try {	
+			return jdbcTemplate.queryForObject(sql, rowMapper,phone);
 		} catch (Exception e) {
 			return null;
 		}
