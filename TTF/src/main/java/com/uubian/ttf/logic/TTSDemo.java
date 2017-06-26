@@ -11,8 +11,8 @@ import java.io.FileOutputStream;
 
 import org.springframework.stereotype.Service;
 public class TTSDemo implements NlsListener {
-    private NlsClient client = new NlsClient();
-    private String tts_text = "薄雾浓云愁永昼。瑞脑消金兽。佳节又重阳，玉枕纱厨，半夜凉初透。东篱把酒黄昏后。有暗香盈袖。莫道不消魂，帘卷西风，人比黄花瘦。";
+    public NlsClient client = new NlsClient();
+    public String tts_text = "薄雾浓云愁永昼。瑞脑消金兽。佳节又重阳，玉枕纱厨，半夜凉初透。东篱把酒黄昏后。有暗香盈袖。莫道不消魂，帘卷西风，人比黄花瘦。";
 
 
     public TTSDemo() {
@@ -76,10 +76,5 @@ public class TTSDemo implements NlsListener {
     	
     }
 
-   
-    public static void main(String[] args) {
-    	TTSDemo ttsDemo = new TTSDemo();
-    	ttsDemo.startTTS();
-    	ttsDemo.shutDown();
-    }
+
 }

@@ -52,13 +52,13 @@
 			<version>2.8.0</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		
-		<dependency>
+<!-- 		<dependency>
       		<groupId>com.alibaba</groupId>
      		 <artifactId>nls-service-sdk</artifactId>
      		 <version>1.0</version>
      		 <scope>system</scope>
      		 <systemPath>${project.basedir}/src/main/java/nls-service-sdk.jar</systemPath>
-   		 </dependency>
+   		 </dependency> -->
 		
 	</dependencies>
 	
