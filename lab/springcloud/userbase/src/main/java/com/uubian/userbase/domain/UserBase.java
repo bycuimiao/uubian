@@ -2,8 +2,10 @@ package com.uubian.userbase.domain;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Entity;
 
+import javax.persistence.Id;
+@Entity
 public class UserBase {
 	private String username;
 	@Id
