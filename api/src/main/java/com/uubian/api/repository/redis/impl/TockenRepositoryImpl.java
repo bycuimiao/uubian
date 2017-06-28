@@ -15,14 +15,14 @@ public class TockenRepositoryImpl implements TockenRepository{
 
 	@Override
 	public int setTocken(String key, String value) {
-		// TODO Auto-generated method stub
 		ValueOperations<String, String> ops = this.template.opsForValue();
-		//if (!this.template.hasKey(key)) {
+		try {
 			ops.set(key, value, 1800, TimeUnit.SECONDS);
-			return 1;
-		//}else{
-		//	return 0;
-		//}
+		} catch (Exception e) {
+			return 0;
+		}
+		
+		return 1;
 	}
 
 	@Override

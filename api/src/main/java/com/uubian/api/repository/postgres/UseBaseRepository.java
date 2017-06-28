@@ -14,4 +14,5 @@ public interface UseBaseRepository{
 	public UserBase getUserBaseByUsername(String username);
 	public UserBase getUserBaseById(long id);
 	public UserBase getUserBaseByMail(String mail);
+	public UserBase getUserBaseByPhone(String phone);
 }

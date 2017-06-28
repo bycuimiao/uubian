@@ -59,6 +59,18 @@ public class UserBaseController {
 		}
 		return map;
 	}
+	@GetMapping("/getOneByPhone/{phone}")
+	public Map<String,Object> getOneByPhone(@PathVariable String phone){
+		UserBase userBase = useBaseRepository.getUserBaseByPhone(phone);
+		Map<String,Object> map = new HashMap<String, Object>();
+		if(userBase!=null){
+			map.put("msg", Message.init(200));
+			map.put("userbase", userBase);
+		}else{
+			map.put("msg", Message.init(202));
+		}
+		return map;
+	}
 	@PostMapping("/save")
 	public Map<String,Object> save(@RequestBody UserBase userBase){
 		userBase.setPassword(BCrypt.hashpw(userBase.getPassword(), BCrypt.gensalt()));

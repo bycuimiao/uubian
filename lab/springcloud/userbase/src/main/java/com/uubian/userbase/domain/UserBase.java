@@ -1,9 +1,12 @@
-package com.uubian.api.domain.postgres;
+package com.uubian.userbase.domain;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
 public class UserBase {
 	private String username;
+	@Id
 	private long id;
 	private String password;
 	private String nickname;
